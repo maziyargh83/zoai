@@ -1,0 +1,9 @@
+#!/usr/bin/env sh
+
+# TURBO_UI=0 pnpm run lint
+
+
+
+
+#if sh -c ": >/dev/tty" >/dev/null 2>/dev/null; then exec </dev/tty >/dev/tty 2>&1; fi
+#npx cz --hook

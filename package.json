@@ -1,0 +1,36 @@
+{
+  "name": "zoai",
+  "private": true,
+  "scripts": {
+    "preinstall": "npx only-allow pnpm",
+    "build": "turbo build",
+    "dev": "turbo dev",
+    "lint": "turbo lint",
+    "format": "prettier --write \"**/*.{ts,tsx,md}\"",
+    "commit": "git add . && npx cz",
+    "clean": "git clean -fd -x",
+    "prepare": "husky"
+  },
+  "devDependencies": {
+    "prettier": "^3.2.5",
+    "turbo": "^2.3.3",
+    "typescript": "5.5.4",
+    "@commitlint/cli": "19.3.0",
+    "@commitlint/config-conventional": "19.2.2",
+    "@commitlint/cz-commitlint": "19.2.0",
+    "@commitlint/types": "19.0.3",
+    "commitizen": "4.3.0",
+    "commitlint-config-monorepo": "2.0.2",
+    "husky": "9.0.11",
+    "@scripts/commitlint": "workspace:*"
+  },
+  "packageManager": "pnpm@9.0.0",
+  "engines": {
+    "node": ">=18"
+  },
+  "config": {
+    "commitizen": {
+      "path": "@commitlint/cz-commitlint"
+    }
+  }
+}
