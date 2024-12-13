@@ -4,7 +4,7 @@
     "access": "public"
   },
   "description": "A multilingual package for your applications",
-  "version": "3.0.0",
+  "version": "1.0.3",
   "main": "dist/index.mjs",
   "module": "dist/index.mjs",
   "types": "dist/main.d.ts",
@@ -35,14 +35,12 @@
   ],
   "scripts": {
     "build": "rollup --config ./rollup.config.js",
-    "test": "vitest",
-    "publish-packages": "turbo run build test --filter=@zoai/core && changeset version && changeset publish"
+    "test": "vitest"
   },
   "files": [
     "dist"
   ],
   "devDependencies": {
-    "@changesets/cli": "^2.27.10",
     "@rollup/plugin-typescript": "^12.1.1",
     "@types/node": "^22.10.2",
     "rollup": "^4.28.1",
