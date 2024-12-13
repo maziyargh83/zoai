@@ -1,5 +1,5 @@
 <p align="center">
-    <img src="static/logo.png" width="300" alt="@zoai/core" />
+    <img src="https://github.com/maziyargh83/zoai/blob/main/static/logo.png?raw=true" width="300" alt="@zoai/core" />
 </p>
 
 <p align="center">
