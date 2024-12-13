@@ -10,7 +10,9 @@
     "test": {
       "dependsOn": ["^test"]
     },
-
+    "publish-packages": {
+      "dependsOn": ["^publish-packages"]
+    },
     "dev": {
       "cache": false,
       "persistent": true

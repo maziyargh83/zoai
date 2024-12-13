@@ -1,6 +1,6 @@
 {
   "name": "@zoai/core",
-  "private": "false",
+  "access": "public",
   "description": "A multilingual package for your applications",
   "version": "1.0.0",
   "main": "dist/index.mjs",
