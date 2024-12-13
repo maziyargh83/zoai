@@ -12,8 +12,8 @@
 
 ![npm](https://img.shields.io/npm/dw/@zoai/core)
 
-<a href="https://twitter.com/intent/follow?screen_name=aralroca">
-<img src="https://img.shields.io/twitter/follow/aralroca?style=social&logo=x"
+<a href="https://twitter.com/intent/follow?screen_name=GhMaziyar">
+<img src="https://img.shields.io/twitter/follow/GhMaziyar?style=social&logo=x"
             alt="follow on Twitter"></a>
 
 </div>
