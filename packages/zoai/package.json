@@ -4,7 +4,7 @@
     "access": "public"
   },
   "description": "A multilingual package for your applications",
-  "version": "1.0.1",
+  "version": "3.0.0",
   "main": "dist/index.mjs",
   "module": "dist/index.mjs",
   "types": "dist/main.d.ts",
@@ -20,12 +20,12 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/mazyargh83/zoai.git",
+    "url": "git+https://github.com/maziyargh83/zoai.git",
     "directory": "packages/zoai"
   },
-  "homepage": "https://github.com/mazyargh83/zoai/tree/main/packages/zoai",
+  "homepage": "https://github.com/maziyargh83/zoai/tree/main/packages/zoai",
   "bugs": {
-    "url": "https://github.com/mazyargh83/zoai/issues"
+    "url": "https://github.com/maziyargh83/zoai/issues"
   },
   "keywords": [
     "zoai",
