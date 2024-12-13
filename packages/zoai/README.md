@@ -1,3 +1,23 @@
+<p align="center">
+    <img src="static/logo.png" width="300" alt="@zoai/core" />
+</p>
+
+<p align="center">
+    A multilingual package for your applications
+</p>
+
+<div align="center">
+
+[![npm version](https://badge.fury.io/js/@zoai%2Fcore.svg)](https://badge.fury.io/js/@zoai%2Fcore)
+
+![npm](https://img.shields.io/npm/dw/@zoai/core)
+
+<a href="https://twitter.com/intent/follow?screen_name=aralroca">
+<img src="https://img.shields.io/twitter/follow/aralroca?style=social&logo=x"
+            alt="follow on Twitter"></a>
+
+</div>
+
 # zoai
 
 > From **Z**ed **to** **A** **I**nternational - A multilingual package for your applications
