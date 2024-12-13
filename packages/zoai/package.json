@@ -1,8 +1,10 @@
 {
   "name": "@zoai/core",
-  "access": "public",
+  "publishConfig": {
+    "access": "public"
+  },
   "description": "A multilingual package for your applications",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "main": "dist/index.mjs",
   "module": "dist/index.mjs",
   "types": "dist/main.d.ts",
@@ -14,14 +16,11 @@
     }
   },
   "type": "module",
-  "author": {
-    "email": "mazyar.gh83@gmail.com",
-    "name": "Mazyar Gholami"
-  },
+  "author": "Mazyar Gholami <mazyar.gh83@gmail.com>",
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/mazyargh83/zoai.git",
+    "url": "git+https://github.com/mazyargh83/zoai.git",
     "directory": "packages/zoai"
   },
   "homepage": "https://github.com/mazyargh83/zoai/tree/main/packages/zoai",
@@ -39,6 +38,9 @@
     "test": "vitest",
     "publish-packages": "turbo run build test --filter=@zoai/core && changeset version && changeset publish"
   },
+  "files": [
+    "dist"
+  ],
   "devDependencies": {
     "@changesets/cli": "^2.27.10",
     "@rollup/plugin-typescript": "^12.1.1",
