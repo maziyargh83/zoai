@@ -1,5 +1,5 @@
 <p align="center">
-    <img src="static/logo.png" width="300" alt="@zoai/core" />
+    <img src="https://github.com/maziyargh83/zoai/blob/main/static/logo.png?raw=true" width="300" alt="@zoai/core" />
 </p>
 
 <p align="center">
@@ -12,8 +12,8 @@
 
 ![npm](https://img.shields.io/npm/dw/@zoai/core)
 
-<a href="https://twitter.com/intent/follow?screen_name=aralroca">
-<img src="https://img.shields.io/twitter/follow/aralroca?style=social&logo=x"
+<a href="https://twitter.com/intent/follow?screen_name=GhMaziyar">
+<img src="https://img.shields.io/twitter/follow/GhMaziyar?style=social&logo=x"
             alt="follow on Twitter"></a>
 
 </div>
@@ -46,4 +46,4 @@ console.log(zoai.t("helloBye", { name: "John" }));
 
 ## Contributing
 
-See [CONTRIBUTING.md](../../CONTRIBUTING.md) for more information.
+See [CONTRIBUTING.md](CONTRIBUTING.md) for more information.
