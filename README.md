@@ -37,11 +37,16 @@ const zoai = new Zoai({
   helloWorld: "Hello World",
   goodbyeWorld: "Goodbye World",
   helloBye: "Hello {{name}}",
+  nested : {
+    children : "Nested children {{index}}}"
+  }
 } as const);
 
 console.log(zoai.t("helloWorld"));
 console.log(zoai.t("goodbyeWorld"));
 console.log(zoai.t("helloBye", { name: "John" }));
+console.log(zoai.t("nested.children", { name: "John" }));
+
 ```
 
 ## Contributing
