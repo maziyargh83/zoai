@@ -158,6 +158,42 @@ for (const key of data) {
 
 > ✅ **Note:** Using `.toLowerCase()` is optional. As long as your keys are consistent with the type definition, you still get full type safety with `zoai`.
 
+### 🌐 Multi-language Support Example
+
+Use the `createLocalize` function to create a localization utility that supports multiple languages and allows switching between them.
+
+```ts
+import { createLocalize } from "@zoai/core";
+
+const langs = {
+  en: {
+    hello: "Hello",
+    greeting: "Hello {{name}}",
+  },
+  fr: {
+    hello: "Bonjour",
+    greeting: "Bonjour {{name}}",
+  },
+  es: {
+    hello: "Hola",
+    greeting: "Hola {{name}}",
+  },
+} as const;
+
+const translation = createLocalize(langs, {
+  defaultLocale: "en",
+});
+
+console.log(translation.t("hello")); // Hello
+console.log(translation.t("greeting", { name: "John" })); // Hello John
+
+translation.setLocale("fr");
+console.log(translation.t("hello")); // Bonjour
+console.log(translation.t("greeting", { name: "John" })); // Bonjour John
+
+console.log(translation.getLocale()); // fr
+```
+
 ---
 
 ## 📚 API Reference
@@ -176,6 +212,28 @@ Translates a string key (supports dot notation) and interpolates placeholders.
 | ------ | ------------------- | ------------------------------------------------ |
 | path   | `string`            | Translation key (e.g. `home.title`, `button.ok`) |
 | values | `Record<string, T>` | (Optional) Interpolation values for placeholders |
+
+### `createLocalize(data: Record<K, T>, options: { defaultLocale?: L })`
+
+Creates a localization utility with support for multiple languages.
+
+#### Parameters:
+
+| Name                  | Type           | Description                              |
+| --------------------- | -------------- | ---------------------------------------- |
+| data                  | `Record<K, T>` | Object containing translations by locale |
+| options               | `Object`       | Configuration options                    |
+| options.defaultLocale | `L`            | (Optional) Default locale to use         |
+
+#### Returns:
+
+An object with the following methods:
+
+| Method    | Description                                |
+| --------- | ------------------------------------------ |
+| t         | Translate a key with optional placeholders |
+| setLocale | Change the current locale                  |
+| getLocale | Get the current locale                     |
 
 ---
 

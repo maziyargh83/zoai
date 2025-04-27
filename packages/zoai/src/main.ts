@@ -23,12 +23,12 @@ export type NestedKeyOf<T> = {
 export type NestedValue<T, P extends string> = P extends keyof T
   ? T[P]
   : P extends `${infer K}.${infer R}`
-  ? K extends keyof T
-    ? T[K] extends object
-      ? NestedValue<T[K], R>
+    ? K extends keyof T
+      ? T[K] extends object
+        ? NestedValue<T[K], R>
+        : never
       : never
-    : never
-  : never;
+    : never;
 
 /**
  * Utility type to extract placeholder keys from a string
@@ -95,3 +95,5 @@ class ZOAI<T> {
   }
 }
 export default ZOAI;
+export { ZOAI };
+export { createLocalize } from "./i18n";
