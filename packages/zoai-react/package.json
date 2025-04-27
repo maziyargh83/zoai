@@ -5,14 +5,14 @@
   },
   "description": "A minimalistic string manipulation package for your applications",
   "version": "1.0.9",
-  "main": "dist/index.mjs",
-  "module": "dist/index.mjs",
+  "main": "dist/esm/index.js",
+  "module": "dist/esm/index.js",
   "types": "dist/main.d.ts",
   "exports": {
     ".": {
       "types": "./dist/main.d.ts",
-      "import": "./dist/index.mjs",
-      "require": "./dist/index.cjs"
+      "import": "./dist/esm/index.js",
+      "require": "./dist/cjs/index.js"
     }
   },
   "type": "module",
@@ -23,7 +23,7 @@
     "url": "git+https://github.com/maziyargh83/zoai.git",
     "directory": "packages/zoai"
   },
-  "homepage": "https://github.com/maziyargh83/zoai/tree/main/packages/zoai",
+  "homepage": "https://github.com/maziyargh83/zoai/tree/main/packages/zoai-react",
   "bugs": {
     "url": "https://github.com/maziyargh83/zoai/issues"
   },
@@ -31,10 +31,13 @@
     "zoai",
     "internationalization",
     "i18n",
-    "typescript"
+    "typescript",
+    "react"
   ],
   "files": [
-    "dist"
+    "dist",
+    "package.json",
+    "README.md"
   ],
   "scripts": {
     "build": "pnpm gen:bundle && pnpm gen:types",
@@ -46,9 +49,7 @@
   },
   "devDependencies": {
     "@types/node": "^20",
-    "rollup-plugin-node-externals": "^8.0.0",
     "tsup": "^8.3.6",
-    "vite-tsconfig-paths": "^5.1.4",
     "@types/react": "^19.0.7",
     "@types/react-dom": "^19.0.3",
     "react": "^19.0.0",

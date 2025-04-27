@@ -1,17 +1,18 @@
 import { defineConfig } from "vite";
-import nodeExternals from "rollup-plugin-node-externals";
-import tsconfigPaths from "vite-tsconfig-paths";
 
 const config = defineConfig({
-  plugins: [
-    tsconfigPaths(),
-    nodeExternals({ deps: false, include: [/recharts/] }),
-  ],
   build: {
-    lib: { entry: "src/index.ts", formats: ["es", "cjs"] },
+    lib: {
+      entry: "src/index.ts",
+      formats: ["es"],
+      fileName: (format) => {
+        if (format === "cjs") return "cjs/[name].cjs";
+        return "esm/[name].js";
+      },
+    },
     sourcemap: true,
     rollupOptions: {
-      treeshake: { preset: "smallest" },
+      treeshake: { preset: "safest" },
       output: {
         banner: `"use client";`,
         preserveModules: true,
@@ -19,6 +20,7 @@ const config = defineConfig({
         exports: "named",
         interop: "auto",
       },
+      external: ["react", "react-dom"],
     },
   },
 });
