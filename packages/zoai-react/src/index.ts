@@ -1,5 +1,6 @@
 import { createLocalize } from "@zoai/core";
-import { useState } from "react";
+import { useState, useCallback } from "react";
+
 export const createZoai = <K extends string, T, L extends K>(
   data: Record<K, T>,
   {
@@ -9,14 +10,21 @@ export const createZoai = <K extends string, T, L extends K>(
   } = {}
 ) => {
   let localize = createLocalize(data, { defaultLocale });
+
   return () => {
-    const [_, setReRender] = useState(0);
+    const [, setLocale] = useState(localize.getLocale());
+
+    const setLocaleWrapper = useCallback(
+      (locale: Parameters<typeof localize.setLocale>[0]) => {
+        localize.setLocale(locale);
+        setLocale(locale);
+      },
+      []
+    );
+
     return {
       ...localize,
-      setLocale: (locale: Parameters<typeof localize.setLocale>[0]) => {
-        localize.setLocale(locale);
-        setReRender((prev) => prev + 1);
-      },
+      setLocale: setLocaleWrapper,
     };
   };
 };
