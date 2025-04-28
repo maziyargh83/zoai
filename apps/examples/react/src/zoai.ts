@@ -7,6 +7,7 @@ const translation = createLocalize({
       howAreYou: "How are you {{name}}?",
     },
     greeting: "How are you {{name}}?",
+    test: "test",
   },
   fa: {
     hello: {
@@ -14,6 +15,7 @@ const translation = createLocalize({
       howAreYou: "چطور {{name}}؟",
     },
     greeting: "خوبی {{name}}",
+    test: "تست",
   },
 } as const);
 const useZoai = createZoai(translation);

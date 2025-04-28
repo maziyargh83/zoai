@@ -13,15 +13,9 @@ export const createLocalize = <K extends string, T, L extends K>(
     throw new Error("No locale set");
   }
   let _zoai = new ZOAI<T>(data[currentLocale]);
-  type keysType = ZOAI<T>["t"];
-  const t: keysType = (key, placeholders) => {
-    if (!currentLocale) {
-      throw new Error("No locale set");
-    }
-    return _zoai.t(key, placeholders);
-  };
+
   return {
-    t,
+    t: _zoai.t,
     setLocale: (locale: K) => {
       currentLocale = locale;
       _zoai = new ZOAI<T>(data[currentLocale]);
@@ -29,31 +23,3 @@ export const createLocalize = <K extends string, T, L extends K>(
     getLocale: () => currentLocale,
   };
 };
-
-const langs = {
-  en: {
-    hello: "Hello",
-    greeting: "Hello {{name}}",
-  },
-  fr: {
-    hello: "Bonjour",
-    greeting: "Bonjour {{name}}",
-  },
-  es: {
-    hello: "Hola",
-    greeting: "Hola {{name}}",
-  },
-} as const;
-
-const translation = createLocalize(langs, {
-  defaultLocale: "en",
-});
-
-console.log(translation.t("hello")); // Hello
-console.log(translation.t("greeting", { name: "John" })); // Hello John
-
-translation.setLocale("fr");
-console.log(translation.t("hello")); // Bonjour
-console.log(translation.t("greeting", { name: "John" })); // Bonjour John
-
-console.log(translation.getLocale()); // fr

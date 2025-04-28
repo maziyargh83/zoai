@@ -49,10 +49,13 @@ export class ZOAI<T> {
   constructor(private translations: T) {}
   t<P extends NestedKeyOf<T>>(
     path: P,
-    placeholders?: NestedValue<T, P> extends string
-      ? PlaceholderValues<NestedValue<T, P>>
-      : never
+    ...args: NestedValue<T, P> extends string
+      ? ExtractPlaceholders<NestedValue<T, P>> extends never
+        ? [undefined?]
+        : [PlaceholderValues<NestedValue<T, P>>]
+      : [undefined?]
   ): string {
+    const [placeholders] = args;
     if (!path) {
       throw new TranslationError("Translation path is required");
     }

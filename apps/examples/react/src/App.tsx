@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { Fragment, useState } from "react";
 import "./App.css";
 import { useZoai } from "./zoai";
 
@@ -24,7 +24,14 @@ const Card = ({ children }: { children: React.ReactNode }) => (
 const Title = () => {
   const { t } = useZoai();
 
-  return <h1>{t("hello.fullName")}</h1>;
+  return (
+    <Fragment>
+      <h1>{t("hello.fullName", { name: "John", family: "Doe" })}</h1>
+      <h1>{t("hello.howAreYou", { name: "John" })}</h1>
+      <h1>{t("greeting", { name: "John" })}</h1>
+      <h1>{t("test")}</h1>
+    </Fragment>
+  );
 };
 function App() {
   return (
