@@ -12,7 +12,8 @@
   "dependencies": {
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
-    "@zoai/react": "workspace:*"
+    "@zoai/react": "workspace:*",
+    "@zoai/core": "workspace:*"
   },
   "devDependencies": {
     "@eslint/js": "^9.22.0",

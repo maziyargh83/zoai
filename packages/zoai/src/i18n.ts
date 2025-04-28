@@ -1,4 +1,4 @@
-import { ZOAI } from "./main";
+import { ZOAI } from "./zoai";
 
 export const createLocalize = <K extends string, T, L extends K>(
   data: Record<K, T>,

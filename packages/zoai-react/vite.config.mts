@@ -20,7 +20,7 @@ const config = defineConfig({
         exports: "named",
         interop: "auto",
       },
-      external: ["react", "react-dom"],
+      external: ["react", "react-dom", "@zoai/core"],
     },
   },
 });

@@ -1,5 +1,5 @@
 import { describe, it, expect, beforeEach } from "vitest";
-import ZOAI, { TranslationError } from "./main";
+import ZOAI, { TranslationError } from "./zoai";
 
 describe("ZOAI", () => {
   const translations = {

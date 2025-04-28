@@ -60,6 +60,9 @@ importers:
 
   apps/examples/react:
     dependencies:
+      '@zoai/core':
+        specifier: workspace:*
+        version: link:../../../packages/zoai
       '@zoai/react':
         specifier: workspace:*
         version: link:../../../packages/zoai-react
@@ -125,10 +128,6 @@ importers:
         version: 2.1.8(@types/node@22.10.2)(terser@5.37.0)
 
   packages/zoai-react:
-    dependencies:
-      '@zoai/core':
-        specifier: workspace:*
-        version: link:../zoai
     devDependencies:
       '@types/node':
         specifier: ^20
@@ -139,6 +138,9 @@ importers:
       '@types/react-dom':
         specifier: ^19.0.3
         version: 19.1.2(@types/react@19.1.2)
+      '@zoai/core':
+        specifier: workspace:*
+        version: link:../zoai
       react:
         specifier: ^19.0.0
         version: 19.1.0
