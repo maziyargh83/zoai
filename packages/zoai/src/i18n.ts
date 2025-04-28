@@ -9,6 +9,7 @@ export const createLocalize = <K extends string, T, L extends K>(
   } = {}
 ) => {
   let currentLocale = defaultLocale ?? (Object.keys(data)[0] as K);
+
   if (!currentLocale) {
     throw new Error("No locale set");
   }
