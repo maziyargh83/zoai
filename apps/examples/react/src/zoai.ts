@@ -1,12 +1,21 @@
+import { createLocalize } from "@zoai/core";
 import { createZoai } from "@zoai/react";
-
-const useZoai = createZoai({
+const translation = createLocalize({
   en: {
-    hello: "Hello",
+    hello: {
+      fullName: "Hello {{name}} {{family}}",
+      howAreYou: "How are you {{name}}?",
+    },
+    greeting: "How are you {{name}}?",
   },
   fa: {
-    hello: "سلام",
+    hello: {
+      fullName: "سلام {{name}} {{family}}",
+      howAreYou: "چطور {{name}}؟",
+    },
+    greeting: "خوبی {{name}}",
   },
 } as const);
+const useZoai = createZoai(translation);
 
 export { useZoai };

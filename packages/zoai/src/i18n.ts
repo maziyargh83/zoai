@@ -6,15 +6,15 @@ export const createLocalize = <K extends string, T, L extends K>(
     defaultLocale,
   }: {
     defaultLocale?: L;
-  }
+  } = {}
 ) => {
   let currentLocale = defaultLocale ?? (Object.keys(data)[0] as K);
   if (!currentLocale) {
     throw new Error("No locale set");
   }
   let _zoai = new ZOAI<T>(data[currentLocale]);
-  type keysType = Parameters<ZOAI<T>["t"]>;
-  const t = (key: keysType[0], placeholders?: keysType[1]) => {
+  type keysType = ZOAI<T>["t"];
+  const t: keysType = (key, placeholders) => {
     if (!currentLocale) {
       throw new Error("No locale set");
     }
@@ -29,3 +29,31 @@ export const createLocalize = <K extends string, T, L extends K>(
     getLocale: () => currentLocale,
   };
 };
+
+const langs = {
+  en: {
+    hello: "Hello",
+    greeting: "Hello {{name}}",
+  },
+  fr: {
+    hello: "Bonjour",
+    greeting: "Bonjour {{name}}",
+  },
+  es: {
+    hello: "Hola",
+    greeting: "Hola {{name}}",
+  },
+} as const;
+
+const translation = createLocalize(langs, {
+  defaultLocale: "en",
+});
+
+console.log(translation.t("hello")); // Hello
+console.log(translation.t("greeting", { name: "John" })); // Hello John
+
+translation.setLocale("fr");
+console.log(translation.t("hello")); // Bonjour
+console.log(translation.t("greeting", { name: "John" })); // Bonjour John
+
+console.log(translation.getLocale()); // fr

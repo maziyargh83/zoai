@@ -1,30 +1,23 @@
+import { useSyncExternalStore } from "react";
+import { createSubsciber } from "./utils";
 import { createLocalize } from "@zoai/core";
-import { useState, useCallback } from "react";
 
-export const createZoai = <K extends string, T, L extends K>(
-  data: Record<K, T>,
-  {
-    defaultLocale,
-  }: {
-    defaultLocale?: L;
-  } = {}
-) => {
-  let localize = createLocalize(data, { defaultLocale });
+type LocalizeType = ReturnType<typeof createLocalize>;
+
+export const createZoai = <T>(_localize: T) => {
+  const localize = _localize as LocalizeType;
+  const { subscribe, notify } = createSubsciber();
+  const setLocaleWrapper: typeof localize.setLocale = (locale) => {
+    localize.setLocale(locale);
+    notify();
+  };
 
   return () => {
-    const [, setLocale] = useState(localize.getLocale());
-
-    const setLocaleWrapper = useCallback(
-      (locale: Parameters<typeof localize.setLocale>[0]) => {
-        localize.setLocale(locale);
-        setLocale(locale);
-      },
-      []
-    );
+    useSyncExternalStore(subscribe, localize.getLocale);
 
     return {
       ...localize,
       setLocale: setLocaleWrapper,
-    };
+    } as T;
   };
 };

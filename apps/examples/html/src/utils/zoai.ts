@@ -1,4 +1,4 @@
-import ZOAI from "@zoai/core";
+import { ZOAI } from "@zoai/core";
 import lang from "./lang";
 
 const zoai = new ZOAI(lang);
