@@ -1,5 +1,6 @@
 import { createLocalize } from "@zoai/core";
 import { createZoai } from "@zoai/react";
+
 const translation = createLocalize(
   {
     en: {
@@ -19,10 +20,7 @@ const translation = createLocalize(
       test: "تست",
     },
   } as const,
-  {
-    defaultLocale: "en",
-  }
+  { defaultLocale: "en" }
 );
-const useZoai = createZoai(translation);
 
-export { useZoai };
+export const useZoai = createZoai(translation);

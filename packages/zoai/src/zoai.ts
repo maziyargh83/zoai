@@ -47,6 +47,7 @@ export type PlaceholderValues<T extends string> = {
 
 export class ZOAI<T> {
   constructor(private translations: T) {}
+
   t<P extends NestedKeyOf<T>>(
     path: P,
     ...args: NestedValue<T, P> extends string
@@ -56,31 +57,29 @@ export class ZOAI<T> {
       : [undefined?]
   ): string {
     const [placeholders] = args;
-    if (!path) {
-      throw new TranslationError("Translation path is required");
-    }
+
+    if (!path) throw new TranslationError("Translation path is required");
 
     const value = path.split(".").reduce((current: any, key) => {
-      if (!current || typeof current !== "object") {
+      if (!current || typeof current !== "object")
         throw new TranslationError(`Invalid path: ${path}`);
-      }
+
       return current && current[key];
     }, this.translations);
-    if (value === undefined) {
+
+    if (value === undefined)
       throw new TranslationError(`Translation not found for path: ${path}`);
-    }
-    if (typeof value !== "string") {
+
+    if (typeof value !== "string")
       throw new TranslationError(
         `Invalid translation value type for path: ${path}. Expected string, got ${typeof value}`
       );
-    }
 
-    if (placeholders) {
-      return this.replacePlaceholders(value, placeholders);
-    }
+    if (placeholders) return this.replacePlaceholders(value, placeholders);
 
     return value;
   }
+
   /**
    * Replace placeholders in translation string
    * @private
@@ -90,11 +89,12 @@ export class ZOAI<T> {
     placeholders: Record<string, string>
   ): string {
     return value.replace(/\{\{(\w+)\}\}/g, (_, key) => {
-      if (!(key in placeholders)) {
+      if (!(key in placeholders))
         throw new TranslationError(`Missing placeholder value for: ${key}`);
-      }
+
       return placeholders[key];
     });
   }
 }
+
 export default ZOAI;
