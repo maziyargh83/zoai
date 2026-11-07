@@ -1,7 +1,7 @@
 {
   "name": "react",
   "private": true,
-  "version": "0.0.0",
+  "version": "0.0.1",
   "type": "module",
   "scripts": {
     "dev": "vite",
@@ -10,7 +10,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "react": "^19.0.0",
+    "react": "^0.0.1",
     "react-dom": "^19.0.0",
     "@zoai/react": "workspace:*",
     "@zoai/core": "workspace:*"

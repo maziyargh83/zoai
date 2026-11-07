@@ -4,7 +4,7 @@
     "access": "public"
   },
   "description": "A tiny, type-safe i18n library with plurals, fallbacks and RTL support",
-  "version": "1.0.9",
+  "version": "2.0.0",
   "main": "dist/index.cjs",
   "module": "dist/index.mjs",
   "types": "dist/main.d.ts",
