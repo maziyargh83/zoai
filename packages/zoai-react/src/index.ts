@@ -1,24 +1,15 @@
 import { useSyncExternalStore } from "react";
-import { createSubsciber } from "./utils";
-import { createLocalize } from "@zoai/core";
+import type { Localize } from "@zoai/core";
 
-type LocalizeType = ReturnType<typeof createLocalize>;
+/**
+ * Turn a `createLocalize()` instance into a hook that re-renders its
+ * components when the locale changes.
+ */
+export const createZoai = <K extends string, T>(localize: Localize<K, T>) => {
+  const getLocale = () => localize.getLocale();
 
-export const createZoai = <T>(_localize: T) => {
-  const localize = _localize as LocalizeType;
-  const { subscribe, notify } = createSubsciber();
-
-  const setLocaleWrapper: typeof localize.setLocale = (locale) => {
-    localize.setLocale(locale);
-    notify();
-  };
-
-  return () => {
-    useSyncExternalStore(subscribe, localize.getLocale);
-
-    return {
-      ...localize,
-      setLocale: setLocaleWrapper,
-    } as T;
+  return (): Localize<K, T> => {
+    useSyncExternalStore(localize.subscribe, getLocale, getLocale);
+    return localize;
   };
 };

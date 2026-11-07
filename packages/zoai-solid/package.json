@@ -1,0 +1,60 @@
+{
+  "name": "@zoai/solid",
+  "publishConfig": {
+    "access": "public"
+  },
+  "description": "SolidJS bindings for @zoai/core: reactive, type-safe translations with RTL support",
+  "version": "0.1.0",
+  "type": "module",
+  "main": "dist/index.cjs",
+  "module": "dist/index.mjs",
+  "types": "dist/main.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/main.d.ts",
+      "import": "./dist/index.mjs",
+      "require": "./dist/index.cjs"
+    }
+  },
+  "sideEffects": false,
+  "author": "Mazyar Gholami <mazyar.gh83@gmail.com>",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/maziyargh83/zoai.git",
+    "directory": "packages/zoai-solid"
+  },
+  "homepage": "https://github.com/maziyargh83/zoai/tree/main/packages/zoai-solid",
+  "bugs": {
+    "url": "https://github.com/maziyargh83/zoai/issues"
+  },
+  "keywords": [
+    "zoai",
+    "internationalization",
+    "i18n",
+    "typescript",
+    "solid",
+    "solidjs",
+    "rtl"
+  ],
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "rollup --config ./rollup.config.js",
+    "test": "vitest",
+    "check": "tsc --noEmit"
+  },
+  "peerDependencies": {
+    "@zoai/core": "workspace:^",
+    "solid-js": "^1.6.0"
+  },
+  "devDependencies": {
+    "@zoai/core": "workspace:*",
+    "@rollup/plugin-typescript": "^12.1.1",
+    "rollup": "^4.28.1",
+    "solid-js": "^1.9.0",
+    "typescript": "~5.6.2",
+    "vitest": "^2.1.8"
+  }
+}

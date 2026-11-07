@@ -6,6 +6,10 @@
     "declarationMap": false,
     "sourceMap": false
   },
-  "include": ["src/**/*"],
-  "exclude": []
+  "include": [
+    "src/**/*"
+  ],
+  "exclude": [
+    "src/**/*.test.ts"
+  ]
 }

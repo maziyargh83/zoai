@@ -10,7 +10,7 @@
     "commit": "git add . && npx cz",
     "clean": "git clean -fd -x",
     "prepare": "husky",
-    "publish-packages": "turbo run build test --filter=@zoai/core && changeset version && changeset publish"
+    "publish-packages": "turbo run build test --filter=./packages/zoai* && changeset version && changeset publish"
   },
   "devDependencies": {
     "@changesets/cli": "^2.27.10",

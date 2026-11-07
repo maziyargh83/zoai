@@ -31,6 +31,9 @@
   - [🧑‍💻 TypeScript Example](#-typescript-example)
   - [🧾 Pure JavaScript Example](#-pure-javascript-example)
   - [📘 Enum & Dynamic Access Example](#-enum--dynamic-access-example)
+  - [🌐 Multi-language Support Example](#-multi-language-support-example)
+  - [🔢 Plurals](#-plurals)
+  - [↔️ RTL and Persian](#️-rtl-and-persian)
 - [📚 API Reference](#-api-reference)
 - [🤝 Contributing](#-contributing)
 - [📄 License](#-license)
@@ -43,6 +46,10 @@
 - 🌍 Simple and flexible translation system
 - 🧠 Type-safe API with `as const` support
 - 🔀 Supports nested keys and placeholders
+- 🔢 Plurals via `Intl.PluralRules`, with a `zero` form
+- 🪂 Fallback locale for missing keys
+- ↔️ RTL aware: `dir()` for Persian, Arabic, Hebrew…, plus locale digits (`۱۲۳`)
+- ⚛️ Bindings for [SolidJS](../zoai-solid) and [React](../zoai-react)
 - 🔒 Immutable language objects
 - ⚡ Zero runtime dependencies
 - 🧩 Works in both JavaScript and TypeScript
@@ -70,9 +77,9 @@ npm install @zoai/core
 ### 🧑‍💻 TypeScript Example
 
 ```ts
-import { Zoai } from "@zoai/core";
+import { ZOAI } from "@zoai/core";
 
-const zoai = new Zoai({
+const zoai = new ZOAI({
   helloWorld: "Hello World",
   goodbyeWorld: "Goodbye World",
   helloBye: "Hello {{name}}",
@@ -194,6 +201,47 @@ console.log(translation.t("greeting", { name: "John" })); // Bonjour John
 console.log(translation.getLocale()); // fr
 ```
 
+### 🔢 Plurals
+
+A leaf with an `other` key is a plural. Pass a numeric `count`; the form is picked with `Intl.PluralRules` for the active locale. `zero` is used for exactly 0 when present.
+
+```ts
+const zoai = new ZOAI({
+  gems: { zero: "No gems", one: "{{count}} gem", other: "{{count}} gems" },
+} as const);
+
+zoai.t("gems", { count: 0 }); // No gems
+zoai.t("gems", { count: 1 }); // 1 gem
+zoai.t("gems", { count: 7 }); // 7 gems
+```
+
+### ↔️ RTL and Persian
+
+```ts
+import { createLocalize } from "@zoai/core";
+
+const i18n = createLocalize(
+  {
+    en: { score: "Score {{points}}", onlyEnglish: "Beta" },
+    fa: { score: "امتیاز {{points}}" },
+  } as const,
+  { defaultLocale: "en", formatNumbers: true },
+);
+
+i18n.setLocale("fa");
+i18n.t("score", { points: 2048 }); // امتیاز ۲٬۰۴۸
+i18n.dir(); // "rtl"
+document.documentElement.dir = i18n.dir();
+
+// Missing in fa → falls back to the default locale at runtime,
+// and is a type error until every locale has it.
+i18n.has("onlyEnglish"); // true
+
+i18n.subscribe((locale) => console.log("now", locale));
+```
+
+`getDirection("fa-IR")` and `matchLocale(navigator.languages, ["en", "fa"])` are exported as standalone helpers.
+
 ---
 
 ## 📚 API Reference
@@ -202,7 +250,11 @@ console.log(translation.getLocale()); // fr
 
 Creates a new Zoai instance with your language map.
 
-### `.t(path: string, values?: Record<string, T): string`
+### `new ZOAI(dictionary, options?: { locale?, formatNumbers?, fallback? })`
+
+Options set the locale used for plurals and number formatting.
+
+### `.t(path: string, values?: Record<string, string | number>): string`
 
 Translates a string key (supports dot notation) and interpolates placeholders.
 
@@ -219,21 +271,28 @@ Creates a localization utility with support for multiple languages.
 
 #### Parameters:
 
-| Name                  | Type           | Description                              |
-| --------------------- | -------------- | ---------------------------------------- |
-| data                  | `Record<K, T>` | Object containing translations by locale |
-| options               | `Object`       | Configuration options                    |
-| options.defaultLocale | `L`            | (Optional) Default locale to use         |
+| Name                   | Type           | Description                                                        |
+| ---------------------- | -------------- | ------------------------------------------------------------------ |
+| data                   | `Record<K, T>` | Object containing translations by locale                           |
+| options                | `Object`       | Configuration options                                              |
+| options.defaultLocale  | `L`            | (Optional) Default locale to use                                   |
+| options.fallbackLocale | `L \| false`   | (Optional) Locale for missing keys; defaults to the initial locale |
+| options.formatNumbers  | `boolean`      | (Optional) Format number placeholders for the locale               |
 
 #### Returns:
 
 An object with the following methods:
 
-| Method    | Description                                |
-| --------- | ------------------------------------------ |
-| t         | Translate a key with optional placeholders |
-| setLocale | Change the current locale                  |
-| getLocale | Get the current locale                     |
+| Method       | Description                                   |
+| ------------ | --------------------------------------------- |
+| t            | Translate a key with optional placeholders    |
+| setLocale    | Change the current locale                     |
+| getLocale    | Get the current locale                        |
+| locales      | All available locales                         |
+| has          | Whether a key exists (with fallback)          |
+| dir          | `"ltr"` or `"rtl"` for a locale               |
+| formatNumber | Locale-aware number formatting                |
+| subscribe    | Listen to locale changes; returns unsubscribe |
 
 ---
 
